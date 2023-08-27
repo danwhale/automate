@@ -353,7 +353,6 @@ PYBIND11_MODULE(automate_cpp, m) {
 			});
 
 	m.def("read_file", &read_file);
-	m.def("read_xt", &read_xt);
 	m.def("read_step", &read_step);
 
 	
