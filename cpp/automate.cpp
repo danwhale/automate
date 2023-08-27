@@ -341,17 +341,6 @@ PYBIND11_MODULE(automate_cpp, m) {
 				return "<Body>";
 			});
 
-	py::class_<PSBody>(m, "PSBody")
-		.def("GetTopology", &PSBody::GetTopology)
-		.def("GetMassProperties", &PSBody::GetMassProperties)
-		.def("GetBoundingBox", &PSBody::GetBoundingBox)
-		.def("Transform", &PSBody::Transform)
-		.def("Tesselate", &PSBody::Tesselate)
-		.def("__repr__",
-			[](const PSBody& p) {
-				return "<Parasolid Body>";
-			});
-
 	py::class_<OCCTBody>(m, "OCCTBody")
 		.def("GetTopology", &OCCTBody::GetTopology)
 		.def("GetMassProperties", &OCCTBody::GetMassProperties)
@@ -525,23 +514,6 @@ PYBIND11_MODULE(automate_cpp, m) {
 		.def_readonly("moment_of_inertia", &Face::moment_of_inertia)
 		.def("__repr__", face_repr);
 
-	py::class_<PSFace>(m, "PSFace")
-		.def("get_inferences", &PSFace::get_inferences)
-		.def("sample_points", &PSFace::sample_points)
-		.def_readonly("function", &PSFace::function)
-		.def_readonly("parameters", &PSFace::parameters)
-		.def_readonly("orientation", &PSFace::orientation)
-		.def_readonly("bounding_box", &PSFace::bounding_box)
-		.def_readonly("na_bb_center", &PSFace::na_bb_center)
-		.def_readonly("na_bb_x", &PSFace::na_bb_x)
-		.def_readonly("na_bb_z", &PSFace::na_bb_z)
-		.def_readonly("na_bounding_box", &PSFace::na_bounding_box)
-		.def_readonly("surface_area", &PSFace::surface_area)
-		.def_readonly("circumference", &PSFace::circumference)
-		.def_readonly("center_of_gravity", &PSFace::center_of_gravity)
-		.def_readonly("moment_of_inertia", &PSFace::moment_of_inertia)
-		.def("__repr__", face_repr);
-
 	py::class_<OCCTFace>(m, "OCCTFace")
 		.def("get_inferences", &OCCTFace::get_inferences)
 		.def("sample_points", &OCCTFace::sample_points)
@@ -571,19 +543,6 @@ PYBIND11_MODULE(automate_cpp, m) {
 		.def_readonly("na_bb_x", &Loop::na_bb_x)
 		.def_readonly("na_bb_z", &Loop::na_bb_z)
 		.def_readonly("na_bounding_box", &Loop::na_bounding_box)
-		.def("__repr__", loop_repr);
-
-	py::class_<PSLoop>(m, "PSLoop")
-		.def("get_inferences", &PSLoop::get_inferences)
-		.def_readonly("_type", &PSLoop::_type)
-		.def_readonly("_is_circle", &PSLoop::_is_circle)
-		.def_readonly("length", &PSLoop::length)
-		.def_readonly("center_of_gravity", &PSLoop::center_of_gravity)
-		.def_readonly("moment_of_inertia", &PSLoop::moment_of_inertia)
-		.def_readonly("na_bb_center", &PSLoop::na_bb_center)
-		.def_readonly("na_bb_x", &PSLoop::na_bb_x)
-		.def_readonly("na_bb_z", &PSLoop::na_bb_z)
-		.def_readonly("na_bounding_box", &PSLoop::na_bounding_box)
 		.def("__repr__", loop_repr);
 
 	py::class_<OCCTLoop>(m, "OCCTLoop")
@@ -621,29 +580,6 @@ PYBIND11_MODULE(automate_cpp, m) {
 		.def_readonly("nn_bounding_box", &Edge::na_bounding_box)
 		.def("__repr__", edge_repr);
 
-	py::class_<PSEdge>(m, "PSEdge")
-		.def("get_inferences", &PSEdge::get_inferences)
-		.def("sample_points", &PSEdge::sample_points)
-		.def_readonly("function", &PSEdge::function)
-		.def_readonly("parameters", &PSEdge::parameters)
-		.def_readonly("t_start", &PSEdge::t_start)
-		.def_readonly("t_end", &PSEdge::t_end)
-		.def_readonly("start", &PSEdge::start)
-		.def_readonly("end", &PSEdge::end)
-		.def_readonly("has_curve", &PSEdge::_has_curve)
-		.def_readonly("_is_reversed", &PSEdge::_is_reversed)
-		.def_readonly("is_periodic", &PSEdge::is_periodic)
-		.def_readonly("mid_point", &PSEdge::mid_point)
-		.def_readonly("length", &PSEdge::length)
-		.def_readonly("center_of_gravity", &PSEdge::center_of_gravity)
-		.def_readonly("moment_of_inertia", &PSEdge::moment_of_inertia)
-		.def_readonly("bounding_box", &PSEdge::bounding_box)
-		.def_readonly("na_bb_center", &PSEdge::na_bb_center)
-		.def_readonly("na_bb_x", &PSEdge::na_bb_x)
-		.def_readonly("na_bb_z", &PSEdge::na_bb_z)
-		.def_readonly("nn_bounding_box", &PSEdge::na_bounding_box)
-		.def("__repr__", edge_repr);
-
 	py::class_<OCCTEdge>(m, "OCCTEdge")
 		.def("get_inferences", &OCCTEdge::get_inferences)
 		.def("sample_points", &OCCTEdge::sample_points)
@@ -673,14 +609,6 @@ PYBIND11_MODULE(automate_cpp, m) {
 		.def_readonly("position", &Vertex::position)
 		.def("__repr__",
 			[](const Vertex& v) {
-				return "Vertex(" + std::to_string(v.position(0)) + "," + std::to_string(v.position(1)) + "," + std::to_string(v.position(2)) + ")";
-			});
-
-	py::class_<PSVertex>(m, "PSVertex")
-		.def("get_inferences", &PSVertex::get_inferences)
-		.def_readonly("position", &PSVertex::position)
-		.def("__repr__",
-			[](const PSVertex& v) {
 				return "Vertex(" + std::to_string(v.position(0)) + "," + std::to_string(v.position(1)) + "," + std::to_string(v.position(2)) + ")";
 			});
 
